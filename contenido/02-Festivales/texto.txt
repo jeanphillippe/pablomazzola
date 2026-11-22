@@ -1,0 +1,7 @@
+# Festivales
+
+- Festival Nacional de Cine de General Pico: dirección.
+- Festival Internacional de Cine de José Ignacio: socio fundador y programador.
+- Festival Internacional de Cine de Mar del Plata: programador artístico (2005 a 2008).
+
+Para cada festival se puede sumar una foto en esta carpeta y una línea en este texto con el año, la sede o un enlace, por ejemplo https://picocinefest.com.ar

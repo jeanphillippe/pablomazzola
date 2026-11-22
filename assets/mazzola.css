@@ -1,0 +1,249 @@
+/* =========================================================
+   PABLO MAZZOLA · capa de tema sobre Rider7
+   ========================================================= */
+
+@font-face {
+  font-family: "PM Hurricane";
+  src: url("fonts/hurricane.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+/* La misma fuente con el nombre de Google Fonts: los títulos (config.txt) no dependen de que cargue Google */
+@font-face {
+  font-family: "Hurricane";
+  src: local("Hurricane"), local("Hurricane-Regular"), url("fonts/hurricane.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pm-bg: #0d0b0a;
+  --pm-cycle: 40s;
+  --pm-name-scale: 1;
+  --pm-ink: #f1e9dc;
+  --pm-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- Portada (nombre) ---------- */
+body.pm-home { overflow: hidden; }
+body.pm-home .site-header,
+body.pm-home main,
+body.pm-home .site-footer,
+body.pm-home .wa-float { visibility: hidden; }
+
+.pm-landing {
+  position: fixed; inset: 0; z-index: 80;
+  background: var(--pm-bg);
+  color: var(--pm-ink);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .6s var(--ease), visibility 0s linear .6s;
+  overflow: hidden;
+}
+.pm-landing.is-on { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .6s var(--ease), visibility 0s; }
+
+.pm-bg { position: absolute; inset: 0; background: var(--pm-bg); }
+.pm-landing.has-cycle .pm-bg { animation: pmCycle var(--pm-cycle) ease-in-out infinite alternate; }
+.pm-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 85% 100%, rgba(233, 180, 95, .07), transparent 55%);
+}
+
+/* Portada de la sección señalada, muy desenfocada, de fondo */
+.pm-preview { position: absolute; inset: 0; }
+.pm-preview img {
+  position: absolute; inset: -10%; width: 120%; height: 120%; max-width: none; object-fit: cover;
+  filter: blur(46px) saturate(1.15) brightness(.62);
+  opacity: 0; transform: scale(1.06);
+  transition: opacity 1.4s var(--ease), transform 6s linear;
+}
+.pm-preview img.on { opacity: .62; transform: scale(1); }
+.pm-preview::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, transparent 10%, rgba(0, 0, 0, .55) 85%);
+}
+
+/* Grano de película */
+.pm-grain {
+  position: absolute; inset: -50%; pointer-events: none; opacity: .11;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: pmGrain .9s steps(6) infinite;
+  mix-blend-mode: overlay;
+}
+body.pm-no-grain .pm-grain { display: none; }
+@keyframes pmGrain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-6%, 4%); } 40% { transform: translate(5%, -7%); }
+  60% { transform: translate(-3%, 8%); } 80% { transform: translate(7%, 2%); } 100% { transform: translate(0, 0); }
+}
+
+/* Destello de proyector (solo en la intro) */
+.pm-flicker {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(70% 60% at 50% 48%, rgba(255, 236, 200, .16), transparent 70%),
+    linear-gradient(90deg, transparent 31.6%, rgba(255, 255, 255, .07) 31.7%, transparent 31.9%);
+}
+.pm-intro .pm-flicker { animation: pmFlicker 2.6s linear forwards; }
+@keyframes pmFlicker {
+  0% { opacity: 0; } 4% { opacity: .9; } 7% { opacity: .2; } 10% { opacity: 1; } 14% { opacity: .5; }
+  18% { opacity: 1; } 60% { opacity: .85; } 100% { opacity: 0; }
+}
+
+/* Esquina inferior derecha */
+.pm-corner {
+  position: absolute;
+  right: max(clamp(18px, 4vw, 64px), env(safe-area-inset-right));
+  bottom: max(clamp(10px, 3.2vh, 44px), env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; align-items: flex-end;
+  max-width: calc(100vw - 32px);
+}
+.pm-name {
+  font-family: "PM Hurricane", "Hurricane", cursive;
+  font-weight: 400;
+  font-size: calc(clamp(4rem, 10.5vw, 11.5rem) * var(--pm-name-scale));
+  line-height: .95;
+  white-space: nowrap;
+  text-align: right;
+  color: var(--pm-ink);
+  transform-origin: 50% 50%;
+  transition: transform 1.2s cubic-bezier(.65, 0, .25, 1);
+  will-change: transform;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 .08em; /* que no se corten los trazos largos */
+}
+.pm-word { display: inline-block; }
+.pm-part {
+  color: inherit; text-decoration: none; cursor: pointer;
+  border-radius: 6px; outline: none;
+  transition: color .45s var(--ease), opacity .45s var(--ease), text-shadow .6s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.pm-part.is-idle { cursor: default; }
+.pm-name.has-hot .pm-part { opacity: .32; }
+.pm-name.has-hot .pm-part.pm-hot,
+.pm-part.pm-hot { opacity: 1; color: var(--accent); text-shadow: 0 0 .35em rgba(233, 180, 95, .45); }
+.pm-part.pm-tour { color: color-mix(in srgb, var(--accent) 70%, var(--pm-ink)); text-shadow: 0 0 .3em rgba(233, 180, 95, .25); }
+.pm-part:focus-visible { outline: 1px dashed color-mix(in srgb, var(--accent) 70%, transparent); outline-offset: 4px; }
+
+/* Etiqueta: número y nombre de la sección */
+.pm-label {
+  font-family: var(--pm-mono);
+  font-size: clamp(.78rem, 1.1vw, .95rem);
+  letter-spacing: .22em; text-transform: uppercase;
+  display: flex; gap: 1.1em; align-items: baseline;
+  margin-bottom: .2em; margin-right: .5em;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  color: var(--pm-ink);
+}
+.pm-label.on { opacity: .9; transform: none; }
+.pm-label-n { color: var(--accent); }
+.pm-hint {
+  font-family: var(--pm-mono);
+  font-size: .78rem; letter-spacing: .2em; text-transform: lowercase;
+  margin: .3em .6em 0 0; opacity: .55;
+  transition: opacity .8s var(--ease);
+}
+.pm-hint.gone, .pm-hint:empty { opacity: 0; }
+
+/* Estado antes de la intro: nada a la vista */
+.pm-landing:not(.pm-ready):not(.pm-writing) .pm-name { opacity: 0; }
+.pm-landing:not(.pm-ready) .pm-label,
+.pm-landing:not(.pm-ready) .pm-hint { opacity: 0; }
+.pm-landing.pm-ready .pm-hint:not(.gone) { animation: pmHint 1.2s var(--ease) both .4s; }
+@keyframes pmHint { from { opacity: 0; } to { opacity: .55; } }
+
+/* El nombre se escribe de izquierda a derecha */
+.pm-writing .pm-name {
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 220% 100%; mask-size: 220% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  animation: pmWrite 2s cubic-bezier(.45, .05, .35, 1) forwards;
+}
+.pm-moving .pm-name { -webkit-mask-image: none; mask-image: none; animation: none; }
+@keyframes pmWrite {
+  from { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+  to { -webkit-mask-position: 0 0; mask-position: 0 0; }
+}
+
+/* Celular vertical: el nombre en dos renglones, más grande */
+@media (max-aspect-ratio: 4/5) {
+  .pm-name { font-size: calc(clamp(4.2rem, 25vw, 10rem) * var(--pm-name-scale)); line-height: .82; }
+  .pm-word { display: block; }
+  .pm-label { margin-bottom: .6em; }
+}
+
+/* ---------- Transición de iris ---------- */
+.pm-iris {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  background: #050404; visibility: hidden;
+  clip-path: circle(0 at var(--x, 50%) var(--y, 50%));
+}
+.pm-iris img {
+  position: absolute; inset: -10%; width: 120%; height: 120%; max-width: none; object-fit: cover;
+  filter: blur(30px) brightness(.55) saturate(1.2);
+}
+.pm-iris.open {
+  visibility: visible; pointer-events: auto;
+  clip-path: circle(150vmax at var(--x, 50%) var(--y, 50%));
+  transition: clip-path .75s cubic-bezier(.7, 0, .3, 1);
+}
+.pm-iris.fade { opacity: 0; transition: clip-path .75s, opacity .7s var(--ease); }
+
+/* ---------- Secciones (Rider7 con este tema) ---------- */
+body { letter-spacing: .005em; }
+.brand-text {
+  font-family: "PM Hurricane", var(--font-title);
+  font-size: calc(2.4rem * var(--pm-name-scale));
+  font-weight: 400; line-height: 1; letter-spacing: 0;
+  padding: 0 .1em;
+}
+.brand:hover .brand-text { color: var(--accent); }
+.nav-list a { font-family: var(--pm-mono); font-size: .86rem; letter-spacing: .08em; }
+.nav-list a.active { background: transparent; color: var(--accent); box-shadow: inset 0 -1px 0 var(--accent); border-radius: 0; }
+.book-title { font-family: var(--pm-mono); letter-spacing: .1em; text-transform: uppercase; font-size: .8rem; }
+.book-holder { filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .6)); }
+
+/* Texto y video de cada sección */
+.pm-extra {
+  scroll-margin-top: calc(var(--header-h) + 20px);
+  width: 100%; max-width: 70ch; margin: clamp(48px, 9vh, 96px) auto clamp(56px, 10vh, 110px);
+  padding: 0 22px;
+}
+.pm-video {
+  position: relative; aspect-ratio: 16 / 9; margin: 0 auto 56px;
+  background: #000; border-radius: 4px; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .5);
+}
+.pm-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.pm-text { font-size: 1.02rem; line-height: 1.8; }
+.pm-text h2 {
+  font-size: calc(clamp(2.6rem, 6vw, 4.2rem) * var(--title-scale) * .6);
+  color: var(--accent); margin: 0 0 .35em; line-height: 1;
+}
+.pm-text h3 {
+  font-family: var(--pm-mono); font-size: .9rem; letter-spacing: .2em; text-transform: uppercase;
+  margin: 2.2em 0 .8em; color: var(--muted);
+}
+.pm-text p { margin: 0 0 1.25em; }
+.pm-text ul { list-style: none; padding: 0; margin: 0 0 1.4em; }
+.pm-text li { position: relative; padding-left: 1.6em; margin-bottom: .7em; }
+.pm-text li::before {
+  content: ""; position: absolute; left: 0; top: .72em;
+  width: .55em; height: .4em; border: 1px solid var(--accent); border-radius: 1px;
+}
+.pm-text a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+/* Cabecera lateral en celular: el menú bien a la derecha */
+body:not(.header-centered).nav-compact .hdr-left { margin-left: auto; }
+
+/* Pie */
+.footer-inner h2 { font-size: calc(clamp(2.2rem, 5vw, 3.2rem) * var(--title-scale) * .7); font-weight: 400; }
+.contact-list a { font-family: var(--pm-mono); font-size: .9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-grain, .pm-landing.has-cycle .pm-bg { animation: none !important; }
+}

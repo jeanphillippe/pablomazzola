@@ -1,0 +1,5 @@
+# Datos de esta sección (todo es opcional)
+titulo: Perfil
+descripcion: Distribuidor de cine, programador de festivales y docente.
+# Video opcional (YouTube o Vimeo). Sacale el # a la línea de abajo y pegá el enlace:
+# video: https://www.youtube.com/watch?v=XXXXXXXXXXX

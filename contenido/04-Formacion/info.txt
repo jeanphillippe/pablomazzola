@@ -1,0 +1,3 @@
+titulo: Formación
+menu: Formación
+descripcion: EGA, talleres y consultoría para realizadores.

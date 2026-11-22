@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!--
+    SEO y vista previa al compartir
+    WhatsApp, Facebook, Instagram y otros NO ejecutan JavaScript: leen solo estas líneas.
+    La imagen de vista previa idealmente mide 1200 x 630 px.
+    Google sí ejecuta JavaScript y además toma los datos de config.txt en cada página.
+  -->
+  <title>Pablo Mazzola</title>
+  <meta name="description" content="Pablo Mazzola: distribución de cine, programación de festivales y formación audiovisual. CINETREN, CADICINE, EGA y Festival de Cine de General Pico.">
+  <meta property="og:site_name" content="Pablo Mazzola">
+  <meta property="og:title" content="Pablo Mazzola">
+  <meta property="og:description" content="Distribución de cine, programación de festivales y formación audiovisual.">
+  <meta property="og:image" content="contenido/01-Perfil/01.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0d0b0a">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <!-- Fin de SEO -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/fonts/hurricane.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/mazzola.css">
+  <script>
+    /* Evita el parpadeo: aplica el modo guardado antes de pintar */
+    try { var m = localStorage.getItem('r7-modo'); if (m) document.documentElement.dataset.theme = m; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="bg-blur" aria-hidden="true"><img alt=""></div>
+  <div class="vh-probe" aria-hidden="true"></div>
+
+  <header class="site-header" id="arriba">
+    <div class="header-inner">
+      <div class="hdr-left">
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list nav-split nav-split-left"></ul>
+      </div>
+      <a class="brand" href="./" aria-label="Inicio">
+        <img class="brand-logo" alt="">
+        <span class="brand-text"></span>
+      </a>
+      <div class="hdr-right">
+        <ul class="nav-list nav-split nav-split-right"></ul>
+        <a class="head-contact" href="#contacto" aria-label="Contacto" title="Contacto">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <button class="theme-toggle" aria-label="Cambiar modo claro u oscuro" title="Claro / oscuro">
+          <svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
+      </div>
+      <nav class="site-nav" id="menu-principal" aria-label="Menú principal">
+        <ul class="nav-list nav-main"></ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Inicio y grupos: listado de portadas (en este sitio el inicio lo tapa el nombre) -->
+    <section class="view view-home" hidden>
+      <h1 class="sr-only site-h1"></h1>
+      <div class="intro"></div>
+      <div class="covers"></div>
+    </section>
+
+    <!-- Sección: primero las imágenes, los controles abajo, después el texto -->
+    <section class="view view-book" hidden>
+      <div class="book-stage">
+        <button class="book-arrow prev" aria-label="Página anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="book-holder"></div>
+        <button class="book-arrow next" aria-label="Página siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="book-ui">
+        <input class="book-range" type="range" min="0" max="0" value="0" aria-label="Ir a página">
+        <div class="book-bar">
+          <a class="btn-ghost book-back" href="./" aria-label="Volver">
+            <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>Inicio</span>
+          </a>
+          <div class="book-meta">
+            <h1 class="book-title"></h1>
+            <span class="book-count"></span>
+          </div>
+          <div class="book-tools">
+            <a class="btn-ghost wa-inline" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" title="WhatsApp" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 3.3 3 6.2 6.4 6.4l1.1-1.5-2-1.1-1 .8a5 5 0 0 1-2.4-2.4l.8-1-1.1-2z" fill="currentColor" stroke-width="1"/></svg></a>
+            <button class="btn-ghost tool-zoom" aria-label="Ampliar página" title="Ampliar">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5M11 8v6M8 11h6"/></svg>
+            </button>
+            <button class="btn-ghost tool-full" aria-label="Pantalla completa" title="Pantalla completa">
+              <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mensajes (carga / error / generador de sitemap) -->
+    <section class="view view-msg" hidden><div class="msg"></div></section>
+
+    <noscript>
+      <p class="noscript">Este sitio necesita JavaScript. Activalo en tu navegador para verlo.</p>
+    </noscript>
+  </main>
+
+  <footer class="site-footer" id="contacto"></footer>
+
+  <a class="wa-float" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" title="WhatsApp" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 3.3 3 6.2 6.4 6.4l1.1-1.5-2-1.1-1 .8a5 5 0 0 1-2.4-2.4l.8-1-1.1-2z" fill="currentColor" stroke-width="1"/></svg></a>
+
+  <div class="zoom" hidden>
+    <button class="zoom-close" aria-label="Cerrar">×</button>
+    <div class="zoom-scroll"></div>
+  </div>
+
+  <script src="assets/vendor/page-flip.browser.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/mazzola.js"></script>
+</body>
+</html>

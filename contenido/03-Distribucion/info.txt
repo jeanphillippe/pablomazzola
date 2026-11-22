@@ -1,0 +1,3 @@
+titulo: Distribución
+menu: Distribución
+descripcion: CINETREN, CADICINE y lanzamientos en salas.
