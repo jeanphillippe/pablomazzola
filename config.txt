@@ -90,7 +90,7 @@ ajuste: llenar
 contacto_titulo: Contacto
 contacto_texto: Festivales, distribución, talleres y prensa.
 # COMPLETAR con el correo real
-email: correo@ejemplo.com
+email: pablo.mazzola@gmail.com
 telefono:
 whatsapp:
 whatsapp_boton: no
