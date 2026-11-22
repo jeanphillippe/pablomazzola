@@ -60,7 +60,7 @@ color_acento: #e9b45f
 
 # Hurricane va incluida en assets/fonts para el nombre. Acá se usa la de Google para los títulos.
 fuente_titulos: Hurricane
-fuente_texto: Nunito
+fuente_texto: Cormorant Garamond
 titulos_tamano: 170
 titulos_peso: 400
 
@@ -118,7 +118,7 @@ seo_imagen:
 fuente: auto
 carpeta_contenido: contenido
 # Al publicarlo en Cloudflare Pages: usuario/repositorio de GitHub (público)
-github_repositorio:
+github_repositorio:jeanphillippe/pablomazzola
 github_rama:
 drive_carpeta_id:
 drive_api_key:
