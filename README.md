@@ -4,12 +4,14 @@ Sitio estático hecho con **Rider7** y una capa de tema propia (`assets/mazzola.
 
 ## Cómo funciona
 
-- **Portada:** solo el nombre, en la esquina inferior derecha, con la tipografía Hurricane. La primera vez que se abre el sitio hay una intro corta: destello de proyector, el nombre se escribe en el centro y se acomoda en la esquina. Tocando la pantalla o una tecla se saltea.
-- **Cada sílaba abre una sección.** Al pasar el mouse se ve el nombre de la sección y su imagen de fondo, desenfocada. Si nadie toca nada, el nombre va mostrando sus secciones de a una.
-- **Al entrar a una sección** hay una transición de iris (el círculo del cine mudo) y se ve el libro de imágenes de Rider7, con el texto y el video debajo.
+- **Portada:** solo el nombre, en la esquina inferior derecha, con la tipografía Hurricane. La primera vez que se abre el sitio, el nombre se escribe letra por letra en el centro (primero el trazo de cada letra, después la tinta) y se acomoda en la esquina. Tocando la pantalla o una tecla se saltea.
+- **Cada sílaba abre una sección.** Si nadie toca nada, el nombre va señalando sus secciones de a una, con su nombre arriba y la portada muy desenfocada de fondo. Al pasar el mouse por una sílaba, además la proyecta: un haz de luz suave hacia una pantalla 16:9 con la portada de la sección.
+- **Al entrar a una sección** hay una transición de iris (el círculo del cine mudo) con un cartel del título, como en el cine mudo, y después se ve el libro de imágenes de Rider7, con el texto y el video debajo.
 - **El fondo** es oscuro y cambia de color despacio. Los colores se eligen en `config.txt`.
 
 ## Editar el contenido
+
+La guía corta para Pablo está en `COMO-EDITAR.md`.
 
 Todo se edita con archivos de texto y carpetas de imágenes, igual que en Rider7.
 
@@ -74,8 +76,21 @@ Arriba de todo está el bloque de la portada:
 | `fondo_ciclo` | Segundos que tarda en recorrerlos |
 | `grano` | Grano de película en la portada: `si` o `no` |
 | `recorrido` | El nombre muestra sus secciones solo cuando nadie lo toca: `si` o `no` |
+| `proyector` | Al pasar el mouse por una sílaba: haz de luz y pantalla con la portada de su sección: `si` o `no` |
+| `fuente_nombre` | Tipografía del nombre (Hurricane viene incluida; otra se pide a Google Fonts y el nombre se ve sin trazo) |
 
 El resto de las claves son las de Rider7 (colores, tipografías, contacto, SEO, de dónde salen las imágenes). **Falta completar el correo real** en `email`.
+
+## El nombre dibujado (assets/nombre.json)
+
+La escritura letra por letra usa el nombre convertido a trazos SVG, con las ligaduras y uniones de Hurricane. Cada sílaba es un enlace dentro del SVG. Si `nombre` en `config.txt` no coincide con el de `assets/nombre.json` (o se cambia `fuente_nombre`), el sitio usa el nombre como texto con un barrido simple.
+
+Para regenerarlo:
+
+```
+pip install fonttools uharfbuzz
+python3 herramientas/generar-nombre.py "Pa|blo Maz|zo|la" ../Hurricane/Hurricane-Regular.ttf
+```
 
 ## Probar y publicar
 

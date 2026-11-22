@@ -16,11 +16,13 @@
 #   P|a|b|l|o ...      = una sección por letra
 # Si hay más partes que secciones, las que sobran quedan quietas.
 nombre: Pa|blo Maz|zo|la
+# Tipografía del nombre (tal cual figura en fonts.google.com). Hurricane viene incluida en el sitio.
+fuente_nombre: Hurricane
 # Tamaño del nombre en porcentaje (100 = normal)
 nombre_tamano: 100
 # Texto chico que aparece debajo del nombre la primera vez (vacío = no aparece)
 nombre_pista: tocá una sílaba
-# Animación de entrada (solo la primera vez que se abre el sitio): si | no
+# Animación de entrada: el nombre se escribe letra por letra (solo la primera vez que se abre el sitio): si | no
 intro: si
 # Colores por los que pasa el fondo, despacio, separados por coma
 fondo_colores: #0d0b0a, #140b0c, #0a1114, #120d16, #0d0b0a
@@ -30,6 +32,8 @@ fondo_ciclo: 40
 grano: si
 # Si nadie toca nada, el nombre va mostrando sus secciones de a una: si | no
 recorrido: si
+# Proyector: al pasar el mouse por una sílaba, proyecta la portada de su sección en una pantalla: si | no
+proyector: si
 
 
 #  ---------- Datos generales ----------
@@ -56,7 +60,7 @@ color_acento: #e9b45f
 
 # Hurricane va incluida en assets/fonts para el nombre. Acá se usa la de Google para los títulos.
 fuente_titulos: Hurricane
-fuente_texto: Courier Prime
+fuente_texto: Cormorant Garamond
 titulos_tamano: 170
 titulos_peso: 400
 
