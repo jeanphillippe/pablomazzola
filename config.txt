@@ -60,7 +60,7 @@ color_acento: #e9b45f
 
 # Hurricane va incluida en assets/fonts para el nombre. Acá se usa la de Google para los títulos.
 fuente_titulos: Hurricane
-fuente_texto: Cormorant Garamond
+fuente_texto: Nunito
 titulos_tamano: 170
 titulos_peso: 400
 
